@@ -1,26 +1,26 @@
 name: Deploy fib-app
-    on:
-      push:
-        branches:
-          - master
-     
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v3
-          - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          - run: docker build -t feroza/fib-app-client-test -f ./client/Dockerfile.dev .
-          - run: docker run -e CI=true feroza/fib-app-client-test npm test
-     
-          - run: docker build -t feroza/fib-app-client ./client
-          - run: docker build -t feroza/fib-app-server ./server
-          - run: docker build -t feroza/fib-app-worker ./worker
-          - run: docker build -t feroza/fib-app-nginx ./nginx
+on:
+  push:
+    branches:
+      - master
 
-          - run: docker push feroza/fib-app-client
-          - run: docker push feroza/fib-app-server
-          - run: docker push feroza/fib-app-worker
-          - run: docker push feroza/fib-app-nginx
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        - run: docker build -t feroza/fib-app-client-test -f ./client/Dockerfile.dev .
+        - run: docker run -e CI=true feroza/fib-app-client-test npm test
+
+        - run: docker build -t feroza/fib-app-client ./client
+        - run: docker build -t feroza/fib-app-server ./server
+        - run: docker build -t feroza/fib-app-worker ./worker
+        - run: docker build -t feroza/fib-app-nginx ./nginx
+
+        - run: docker push feroza/fib-app-client
+        - run: docker push feroza/fib-app-server
+        - run: docker push feroza/fib-app-worker
+        - run: docker push feroza/fib-app-nginx
 
 
