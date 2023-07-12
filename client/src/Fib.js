@@ -3,7 +3,7 @@ import axios from 'axios';
 
 class Fib extends Component {
     state = {
-        seendIndexes: [],
+    	seenIndexes: [],
         values: {},
         index: ''
     };
@@ -21,7 +21,7 @@ class Fib extends Component {
     async fetchIndexes() {
         const seenIndexes = await axios.get('/api/values/all');
         this.setState({
-            seenIndexes: seenIndexes.data
+      		seenIndexes: seenIndexes.data,
         });
     }
 
@@ -35,7 +35,7 @@ class Fib extends Component {
     };
 
     renderSeenIndexes() {
-        return this.state.seendIndexes.map(({ number }) => number).join(', ');
+    	return this.state.seenIndexes.map(({ number }) => number).join(', ');
     }
 
     renderValues() {
@@ -48,6 +48,8 @@ class Fib extends Component {
                 </div>
             );
         }
+
+    	return entries;
     }
 
     render () {
@@ -57,7 +59,7 @@ class Fib extends Component {
                 <label>Enter your index:</label>
                 <input 
                     value={this.state.index}
-                    onChange={event => this.setState({ index: event.target.value})}
+            	    onChange={(event) => this.setState({ index: event.target.value })}
                 />
                 <button>Submit</button>
             </form>
