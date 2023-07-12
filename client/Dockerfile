@@ -4,7 +4,7 @@ RUN mkdir /app && chown node:node /app
 WORKDIR '/app'
 
 USER node
-COPY --chown=node:node ./package.json ./
+COPY --chown=node:node ./package.json package-lock.json* ./
 
 RUN npm install
 COPY --chown=node:node . .
