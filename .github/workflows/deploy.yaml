@@ -32,7 +32,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
           application_name: fib-app
-          environment_name: Fip-app-env
+          environment_name: Fib-app-env
           existing_bucket_name: elasticbeanstalk-eu-north-1-062992551369
           region: eu-north-1
           version_label: ${{ github.sha }}
